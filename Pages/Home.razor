@@ -1,0 +1,18 @@
+﻿@page "/"
+@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-6 mx-auto">
+    <MudPaper Class="p-4">
+        <MudText Typo="Typo.h5">Привіт, Святослав!</MudText>
+        <MudTextField Label="Введи щось..." @bind-Value="_text" />
+        <MudButton OnClick="@(() => _output = $"Ти ввів: {_text}")" Color="Color.Primary" Variant="Variant.Filled" Class="mt-2">
+            Надіслати
+        </MudButton>
+        <MudText Class="mt-2" Color="Color.Info">@_output</MudText>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private string _text;
+    private string _output;
+}

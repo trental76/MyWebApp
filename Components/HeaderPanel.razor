@@ -1,0 +1,20 @@
+﻿@using MudBlazor
+@using MyWebApp.Components
+@using MyWebApp.Components.BaseComponents
+
+<MudPaper Class="pa-0">
+    <ResponsiveView>
+        <MobileContent>
+            <MobileLinePanel OnToggle="@ToggleExpanded" />
+        </MobileContent>
+        <FullContent>
+            <FullSizeLinePanel OnToggle="@ToggleExpanded" />
+        </FullContent>
+    </ResponsiveView>
+    <ExpandedPanel IsExpanded="@_expanded" />
+</MudPaper>
+
+@code {
+    bool _expanded = false;
+    void ToggleExpanded() => _expanded = !_expanded;
+}

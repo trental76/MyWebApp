@@ -1,0 +1,16 @@
+﻿@using MudBlazor;
+
+<MudCollapse Expanded="IsExpanded" Class="responsive-panel">
+    <MudPaper  Class="pa-4 ma-1">
+        <MudStack Spacing="2" Direction="Direction.Column">
+            <MudText GutterBottom="true">Experienced Senior C# Developer with expertise in .NET Core, ASP.NET MVC, WPF, and cloud technologies (Azure, AWS).</MudText>
+            <MudText GutterBottom="true">Proficient in microservices architecture, database management (MS SQL, Oracle, MongoDB, DynamoDB).</MudText>
+            <MudText GutterBottom="true">Skilled in refactoring monolithic systems into modular microservices, leveraging cloud platforms such as Azure and AWS for scalable solutions.</MudText>
+            <MudText GutterBottom="true">Have experience working with cryptography and digital signatures.</MudText>
+        </MudStack>
+    </MudPaper>
+</MudCollapse>
+
+@code {
+    [Parameter] public bool IsExpanded { get; set; }
+}

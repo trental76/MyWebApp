@@ -1,0 +1,55 @@
+﻿@using MudBlazor
+@using MudBlazor.Services
+
+@implements IBrowserViewportObserver
+@implements IAsyncDisposable
+@inject IBrowserViewportService ViewportService
+
+@if (_isMobile)
+{
+    @MobileContent
+}
+else
+{
+    @FullContent
+}
+
+@code {
+    public Guid Id { get; } = Guid.NewGuid();
+
+    public ResizeOptions ResizeOptions { get; } = new ResizeOptions
+        {
+            ReportRate = 200,
+            NotifyOnBreakpointOnly = true
+        };
+
+    // Параметри контенту:
+    [Parameter] public RenderFragment? MobileContent { get; set; }
+    [Parameter] public RenderFragment? FullContent { get; set; }
+
+    private bool _isMobile;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ViewportService.SubscribeAsync(this, fireImmediately: true);
+        }
+    }
+
+    public Task NotifyBrowserViewportChangeAsync(BrowserViewportEventArgs args)
+    {
+        var wasMobile = _isMobile;
+        _isMobile = args.Breakpoint <= Breakpoint.Sm;
+        if (_isMobile != wasMobile)
+        {
+            InvokeAsync(StateHasChanged);
+        }
+        return Task.CompletedTask;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await ViewportService.UnsubscribeAsync(this);
+    }
+}

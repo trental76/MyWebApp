@@ -1,0 +1,15 @@
+﻿@using MudBlazor;
+
+<MudAppBar Color="Color.Transparent" Fixed="false">
+    <MudText Align="Align.Left" Typo="Typo.h5" Color="Color.Info" Class="text-truncate" Style="min-width: 120px;">Fedorov Sviatoslav</MudText>
+    <MudSpacer />
+    <MudText Align="Align.Right" Color="Color.Info" Class="text-truncate" Style="min-width: 100px;">AWS Certified developer, Senior .NET Developer</MudText>
+    <MudIconButton Icon="@Icons.Material.Filled.ExpandMore" OnClick="@OnToggle" />
+    <MudIconButton Icon="@Icons.Custom.Brands.Gmail" Color="Color.Inherit" />
+    <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Inherit" />
+    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" />
+</MudAppBar>
+
+@code {
+    [Parameter] public EventCallback OnToggle { get; set; }
+}
