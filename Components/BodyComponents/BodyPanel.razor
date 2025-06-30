@@ -1,0 +1,18 @@
+﻿@using MudBlazor
+@using MyWebApp.Components.BaseComponents
+
+<ResponsiveView>
+    <MobileContent>
+        <MobileDrawer />
+        <CardCarousel />
+        <ItemDetails />
+    </MobileContent>
+    <FullContent>
+        <MudDrawer Variant="DrawerVariant.Persistent" Open="true" Elevation="1" Anchor="Anchor.Top">
+            <LeftPanel />
+        </MudDrawer>
+        <MudMainContent style="padding-top: 0; margin-left: 280px;">
+            <TabSection />
+        </MudMainContent>
+    </FullContent>
+</ResponsiveView>

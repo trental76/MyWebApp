@@ -1,0 +1,14 @@
+﻿@using MudBlazor
+@using MyWebApp.Models
+
+@if (SelectedItem != null)
+{
+    <MudPaper Class="mt-4 p-4">
+        <MudText Typo="Typo.h5">@SelectedItem.Title</MudText>
+        <MudText>@SelectedItem.Description</MudText>
+    </MudPaper>
+}
+
+@code {
+    [Parameter] public SectionItem? SelectedItem { get; set; }
+}

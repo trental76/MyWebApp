@@ -1,0 +1,28 @@
+﻿@using MudBlazor
+@using MyWebApp.Models
+
+<MudPaper Style="width: 280px; height: 100vh; position: fixed;">
+    <MudAvatar Size="Size.Large" Img="https://via.placeholder.com/150" Class="mb-4" />
+    <MudText Typo="Typo.h6" Class="mb-2">Fedorov Sviatoslav</MudText>
+    <MudText Class="mb-4" Color="Color.Secondary" Style="white-space: pre-line;">
+        I am С# developer from Urkaine, now living on France. Hobbies - yachting, hanggliding, swiming, hiking
+    </MudText>
+
+    <MudDivider Class="my-3" />
+
+    <MudText Typo="Typo.subtitle1" Class="mb-2">Contacts</MudText>
+    <MudList T="ContactItem" Dense="true">
+        <MudListItem>
+            <MudIcon Icon="@Icons.Material.Filled.Email" Class="mr-2" />
+            <a href="mailto:svyat@example.com">svyat@example.com</a>
+        </MudListItem>
+        <MudListItem>
+            <MudIcon Icon="@Icons.Material.Filled.Phone" Class="mr-2" />
+            +33 123 456 789
+        </MudListItem>
+        <MudListItem>
+            <MudIcon Icon="@Icons.Material.Filled.LocationOn" Class="mr-2" />
+            Південь Франції
+        </MudListItem>
+    </MudList>
+</MudPaper>

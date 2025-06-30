@@ -1,0 +1,20 @@
+﻿@using MyWebApp.Models.Constants
+@using MudBlazor
+
+<MudTabs @bind-ActivePanelIndex="SelectedIndex" OnActivated="@OnActivated">
+    @foreach (var tab in SectionConstants.Sections)
+    {
+        <MudTabPanel Text="@tab"></MudTabPanel>
+    }
+</MudTabs>
+
+@code {
+    [Parameter] public EventCallback<int> OnTabChanged { get; set; }
+    private int SelectedIndex;
+
+    private async Task OnActivated(int index)
+    {
+        SelectedIndex = index;
+        await OnTabChanged.InvokeAsync(index);
+    }
+}

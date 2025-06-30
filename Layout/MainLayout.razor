@@ -1,23 +1,14 @@
 ﻿@inherits LayoutComponentBase
 
 @using MudBlazor
-@using MyWebApp.Components
+@using MyWebApp.Components.BodyComponents
+@using MyWebApp.Components.HeaderComponents
 
 <MudThemeProvider IsDarkMode="true"></MudThemeProvider>
 
-    <MudLayout>
-        <HeaderPanel />
-
-        <MudDrawer Open="false" ClipMode="DrawerClipMode.Always" Variant="DrawerVariant.Temporary">
-            <MudNavMenu>
-                <MudNavLink Href="/" Icon="@Icons.Material.Filled.Home">Головна</MudNavLink>
-            </MudNavMenu>
-        </MudDrawer>
-
-        <MudMainContent>
-            @Body
-        </MudMainContent>
-    </MudLayout>
-
-
-
+<MudLayout>
+    <HeaderPanel />
+    <MudMainContent style="padding-top: 0; margin-left: 0;">
+        <BodyPanel />
+    </MudMainContent>
+</MudLayout>

@@ -1,0 +1,13 @@
+﻿@using MudBlazor
+@using MyWebApp.Models
+
+<MudCard Style="width:300px;" @onclick="@(()=>OnItemSelected.InvokeAsync(Item))">
+    <MudCardContent>
+        <MudText Typo="Typo.h6">@Item.Title</MudText>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter] public SectionItem Item { get; set; } = new SectionItem();
+    [Parameter] public EventCallback<SectionItem> OnItemSelected { get; set; }
+}

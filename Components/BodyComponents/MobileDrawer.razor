@@ -1,0 +1,35 @@
+﻿@using MudBlazor
+@using Models.Constants
+
+<MudHidden>
+    <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" OnClick="@ToggleDrawer" />
+        <MudText Typo="Typo.h6">My Site</MudText>
+    </MudAppBar>
+
+    <MudDrawer @bind-Open="DrawerOpen" Anchor="Anchor.Left">
+        <MudNavMenu>
+            @foreach (var tab in Sections)
+            {
+                <MudNavLink OnClick="@(() => SelectTab(tab))">@tab</MudNavLink>
+            }
+        </MudNavMenu>
+    </MudDrawer>
+</MudHidden>
+
+@code {
+    public bool DrawerOpen = false;
+    public HashSet<string> Sections = SectionConstants.Sections;
+    private string _selectedTab = "Home";
+    private void ToggleDrawer()
+    {
+        DrawerOpen = !DrawerOpen;
+    }
+    private void SelectTab(string tab)
+    {
+        _selectedTab = tab;
+        DrawerOpen = false;
+        
+        // You can add navigation logic here if needed
+    }
+}
