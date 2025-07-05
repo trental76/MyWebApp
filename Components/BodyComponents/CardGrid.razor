@@ -1,14 +1,14 @@
 ﻿@using MudBlazor
 @using MyWebApp.Models
 
-<MudCarousel TData="SectionItems">
+<MudGrid Gutter="3">
     @foreach (var item in Items)
     {
-        <MudCarouselItem>
-            <ItemCard />
-        </MudCarouselItem>
+        <MudItem xs="12" sm="6" md="4" lg="3">
+            <ItemCard Item="item" />
+        </MudItem>
     }
-</MudCarousel>
+</MudGrid>
 
 @code {
     [Parameter] public List<SectionItem> Items { get; set; } = new();

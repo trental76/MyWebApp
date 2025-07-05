@@ -1,10 +1,17 @@
-﻿@using MyWebApp.Models.Constants
-@using MudBlazor
+﻿@using MudBlazor
+@using MyWebApp.Models
+@using MyWebApp.Models.Constants
+@inject HttpClient Http
 
-<MudTabs @bind-ActivePanelIndex="SelectedIndex" OnActivated="@OnActivated">
+
+<MudTabs @bind-ActivePanelIndex="SelectedIndex" @onclick="() => OnActivated(SelectedIndex)">
     @foreach (var tab in SectionConstants.Sections)
     {
-        <MudTabPanel Text="@tab"></MudTabPanel>
+        <MudTabPanel Text="@tab">
+            <MudPaper Style="padding: 16px;">
+                <CardGrid Items="@Items" />
+            </MudPaper>
+        </MudTabPanel>
     }
 </MudTabs>
 
@@ -12,9 +19,29 @@
     [Parameter] public EventCallback<int> OnTabChanged { get; set; }
     private int SelectedIndex;
 
-    private async Task OnActivated(int index)
+    [Parameter] public List<SectionItem> Items { get; set; } = new List<SectionItem>();
+
+    protected override async Task OnInitializedAsync()
     {
-        SelectedIndex = index;
-        await OnTabChanged.InvokeAsync(index);
+        // Initialize default tab
+        SelectedIndex = SectionConstants.Sections.IndexOf(SectionConstants.DefaultSection);
+        await LoadItemsForTab(SelectedIndex);
+    }
+
+    private async Task OnActivated(int tabIndex)
+    {
+        SelectedIndex = tabIndex;
+        await LoadItemsForTab(tabIndex);
+    }
+
+    private async Task LoadItemsForTab(int tabIndex)
+    {
+        var tabName = SectionConstants.Sections.ElementAt(tabIndex);
+        var url = $"{LambdaConstants.GetSectionItemsAPI}/?section={tabName}";
+
+        var response = await Http.GetFromJsonAsync<IReadOnlyCollection<SectionItem>>(url);
+        Items = response?.Count > 0 ? response.ToList() : new List<SectionItem>();
+
+        StateHasChanged();
     }
 }

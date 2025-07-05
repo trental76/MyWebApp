@@ -2,7 +2,7 @@
 
 public static class SectionConstants
 {
-    public static HashSet<string> Sections =
+    public static List<string> Sections =
     [
         "Summary",
         "Tech Stack",
@@ -10,4 +10,6 @@ public static class SectionConstants
         "Experience",
         "About"
     ];
+
+    public static string DefaultSection => Sections.ElementAt(2);
 }

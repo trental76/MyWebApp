@@ -1,9 +1,11 @@
 ﻿@using MudBlazor
 @using MyWebApp.Models
 
-<MudCard Style="width:300px;" @onclick="@(()=>OnItemSelected.InvokeAsync(Item))">
+<MudCard Style="animation" @onclick ="@(()=>OnItemSelected.InvokeAsync(Item))">
     <MudCardContent>
-        <MudText Typo="Typo.h6">@Item.Title</MudText>
+        <MudText Typo="Typo.h5" Color="Color.Info">@Item.Title</MudText>
+        <MudText Typo="Typo.h6">@Item.Category</MudText>
+        <MudText Typo="Typo.body1">@Item.Status</MudText>
     </MudCardContent>
 </MudCard>
 

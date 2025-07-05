@@ -2,7 +2,7 @@
 
 public class SectionItem
 {
-    public string Name { get; set; } = string.Empty;
+    public string SectionName { get; set; } = string.Empty;
 
     public string Category { get; set; } = string.Empty;
 
@@ -21,4 +21,8 @@ public class SectionItem
     public string Icon { get; set; } = string.Empty;
 
     public string Link { get; set; } = string.Empty;
+
+    public object? TechStack { get; set; }
+
+    public object? ProgectTargets { get; set; }
 }
