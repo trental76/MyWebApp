@@ -1,6 +1,6 @@
 ﻿namespace MyWebApp.Models;
 
-public class MyProjectDescription
+public class ProjectDescription
 {
     public string Overview { get; set; } = string.Empty;
     

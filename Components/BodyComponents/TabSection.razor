@@ -37,10 +37,19 @@
     private async Task LoadItemsForTab(int tabIndex)
     {
         var tabName = SectionConstants.Sections.ElementAt(tabIndex);
-        var url = $"{LambdaConstants.GetSectionItemsAPI}/?section={tabName}";
+        if (Cache.SectionCache.TryGetValue(tabName, out var value))
+        {
+            Items = value.ToList();
+        }
+        else
+        {
+            var encodedTabName = Uri.EscapeDataString(tabName);
+            var url = string.Format(LambdaConstants.GetSectionItemsAPI, encodedTabName);
 
-        var response = await Http.GetFromJsonAsync<IReadOnlyCollection<SectionItem>>(url);
-        Items = response?.Count > 0 ? response.ToList() : new List<SectionItem>();
+            var response = await Http.GetFromJsonAsync<IReadOnlyCollection<SectionItem>>(url);
+            Items = response?.Count > 0 ? response.ToList() : new List<SectionItem>();
+            Cache.SectionCache[tabName] = Items.ToList();
+        }
 
         StateHasChanged();
     }

@@ -16,13 +16,9 @@ public class SectionItem
 
     public bool IsDeleted { get; set; }
 
-    public string Description { get; set; } = string.Empty;
+    public ProjectDescription? Description { get; set; }
 
     public string Icon { get; set; } = string.Empty;
 
     public string Link { get; set; } = string.Empty;
-
-    public object? TechStack { get; set; }
-
-    public object? ProgectTargets { get; set; }
 }
